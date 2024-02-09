@@ -5,7 +5,7 @@ import viewRoutes from "./routes/views.routes.js";
 
 //Declaramos express
 const app = express();
-const PORT = 8080;
+const PORT = 8090;
 
 //Preparar la configuracion del servidor para recibir objetos JSON
 app.use(express.json());
@@ -76,7 +76,7 @@ app.get("/users", (req, res) => {
   res.render("users", user);
 });
 
-app.use("/user", viewRoutes);
+app.use("/api/hbs", viewRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server run on port: ${PORT}`);
