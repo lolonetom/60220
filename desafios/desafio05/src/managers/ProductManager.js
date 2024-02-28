@@ -8,7 +8,7 @@ export default class ProductManager {
   }
 
   /* Metodo para obtener array de todos los productos */
-  async getProducts() {
+  async getProduct() {
     try {
       if (fs.existsSync(this.path)) {
         const productsJSON = await fs.promises.readFile(this.path, "utf-8");
@@ -26,7 +26,7 @@ export default class ProductManager {
   /* Metodo para obtener */
   async getProductById(id) {
     try {
-      const products = await this.getProducts();
+      const products = await this.getProduct();
       const product = this.products.find((p) => p.id === id);
       if (!product) throw new Error(`No se encontro el producto con ID ${id}`);
       return product;
@@ -36,7 +36,7 @@ export default class ProductManager {
   }
 
   /* Metodo para agregar productos */
-  addProducts(title, description, price, thumbnail, code, stock) {
+  addProduct(title, description, price, thumbnail, code, stock) {
     const validarCode = this.products.find((product) => product.code === code);
     if (validarCode) {
       console.log("Ya existe un producto con el mismo codigo");
@@ -56,8 +56,8 @@ export default class ProductManager {
   }
 }
 
-const test = async () => {
-  await productManager.addProduct(
+/* const test = async () => {
+  await ProductManager.addProduct(
     "producto prueba1",
     "Este es un producto prueba",
     200,
@@ -65,7 +65,7 @@ const test = async () => {
     "abc123",
     10
   );
-  await productManager.addProduct(
+  await ProductManager.addProduct(
     "producto prueba2",
     "Este es un producto prueba",
     300,
@@ -73,7 +73,7 @@ const test = async () => {
     "abc1234",
     10
   );
-  await productManager.addProduct(
+  await ProductManager.addProduct(
     "producto prueba1",
     "Este es un producto prueba",
     200,
@@ -82,7 +82,7 @@ const test = async () => {
     10
   );
 
-  await productManager.getProductById(2);
+  await ProductManager.getProductById(2);
 };
 
-test();
+test(); */

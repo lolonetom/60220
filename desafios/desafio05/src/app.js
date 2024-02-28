@@ -40,12 +40,12 @@ const socketServer = new Server(httpServer);
 socketServer.on("connection", async (socket) => {
   console.log("Cliente Conectado");
 
-  socket.emit("productsArray", await productManager.getProducts());
+  socket.emit("productsArray", await ProductManager.getProduct());
 
   socket.on("productObject", async (object) => {
-    await productManager.addProduct(object);
+    await ProductManager.addProduct(object);
 
-    socket.emit("productsArray", await productManager.getProducts());
+    socket.emit("productsArray", await ProductManager.getProduct());
   });
 });
 
